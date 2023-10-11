@@ -6831,7 +6831,10 @@ namespace Server.Mobiles
             if (name.StartsWith("0x", StringComparison.Ordinal))
             {
                 if (int.TryParse(name.Substring(2), NumberStyles.HexNumber, Core.Culture, out int serial))
+                {
                     return World.FindEntity(serial) as XmlSpawner;
+                }
+
                 return null;
             }
             else

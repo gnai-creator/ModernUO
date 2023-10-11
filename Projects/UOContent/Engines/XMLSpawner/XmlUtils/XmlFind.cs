@@ -425,12 +425,16 @@ namespace Server.Mobiles
                 if (o is Targeting.StaticTarget st)
                 {
                     if (map.Regions.TryGetValue(regionname, out Region r) && r != null)
+                    {
                         return r.Contains(st.Location);
+                    }
                 }
                 else if (o is Targeting.LandTarget lt)
                 {
                     if (map.Regions.TryGetValue(regionname, out Region r) && r != null)
+                    {
                         return r.Contains(lt.Location);
+                    }
                 }
             }
             return false;
@@ -1136,7 +1140,9 @@ namespace Server.Mobiles
                                 {
                                     targetentrytype = SpawnerType.GetType(searchentry);
                                     if (targetentrytype == null)
+                                    {
                                         continue;
+                                    }
                                 }
                                 // search the entries of the spawner
                                 foreach (ISpawnObjectFinder so in list.i_SpawnObjects)
@@ -1345,7 +1351,9 @@ namespace Server.Mobiles
                         if (criteria.Dosearchspawnentry && searchentry != null)
                         {
                             if (string.IsNullOrEmpty(es) || es.ToLower(Core.Culture).IndexOf(searchentry) < 0)
+                            {
                                 continue;
+                            }
                         }
                     }
                     // passed all conditions so add it to the list

@@ -4,7 +4,6 @@ namespace Server.Commands
 {
     public class WhatIsIt
     {
-
         public static void Initialize()
         {
             CommandSystem.Register("WhatIsIt", AccessLevel.Counselor, new CommandEventHandler(GenericCommand_OnCommand));

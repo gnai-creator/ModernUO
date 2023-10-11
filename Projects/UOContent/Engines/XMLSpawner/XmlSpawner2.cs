@@ -12998,9 +12998,14 @@ else if (string.Compare(sp.Map.Name, Map.Tokuno.Name, true) == 0)
                         int subgroup = reader.ReadInt();
                         float resettime;
                         if (version < 32)
+                        {
                             resettime = (float)reader.ReadDouble();
+                        }
                         else
+                        {
                             resettime = reader.ReadFloat();
+                        }
+
                         int resetto = reader.ReadInt();
                         int killsneeded = reader.ReadInt();
                         tmpSubGroup.Add(subgroup);
@@ -13056,9 +13061,14 @@ else if (string.Compare(sp.Map.Name, Map.Tokuno.Name, true) == 0)
                 case 9:
                 {
                     if (version < 32)
+                    {
                         TriggerProbability = (float)reader.ReadDouble();
+                    }
                     else
+                    {
                         TriggerProbability = reader.ReadFloat();
+                    }
+
                     goto case 8;
                 }
                 case 8:
@@ -13338,7 +13348,9 @@ else if (string.Compare(sp.Map.Name, Map.Tokuno.Name, true) == 0)
         private void SetRegionName()
         {
             if (!Deleted && !string.IsNullOrEmpty(m_RegionName))
+            {
                 RegionName = m_RegionName;
+            }
         }
 
         internal string GetSerializedObjectList()
@@ -13446,7 +13458,10 @@ else if (string.Compare(sp.Map.Name, Map.Tokuno.Name, true) == 0)
             public override bool Equals(object obj)
             {
                 if(obj is SpawnObject so)
+                {
                     return Equals(so);
+                }
+
                 return false;
             }
 

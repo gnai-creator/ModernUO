@@ -1073,7 +1073,9 @@ namespace Server.Mobiles
         {
             // refresh the spawner gumps
             if (m != null && !m.Deleted)
+            {
                 RefreshSpawnerGumps(m);
+            }
         }
 
         public static void RefreshSpawnerGumps(Mobile from)

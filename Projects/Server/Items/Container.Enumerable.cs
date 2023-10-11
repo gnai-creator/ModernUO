@@ -57,8 +57,8 @@ public partial class Container
     ///     <paramref name="predicate" />.
     /// </returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public FindItemsByTypeEnumerator<T> FindItemsByType<T>(bool recurse = true, Predicate<T> predicate = null)
-        where T : Item => new(this, recurse, predicate);
+    public FindItemsByTypeEnumerator<T> FindItemsByType<T>(bool recurse = true, Predicate<T> predicate = null) =>
+        new(this, recurse, predicate);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public QueuedItemsEnumerator<Item> EnumerateItems(bool recurse = true, Predicate<Item> predicate = null)
@@ -98,14 +98,14 @@ public partial class Container
     ///     <paramref name="predicate" />.
     /// </returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public QueuedItemsEnumerator<T> EnumerateItemsByType<T>(bool recurse = true, Predicate<T> predicate = null)
-        where T : Item => new(QueueItemsByType(recurse, predicate));
+    public QueuedItemsEnumerator<T> EnumerateItemsByType<T>(bool recurse = true, Predicate<T> predicate = null) =>
+        new(QueueItemsByType(recurse, predicate));
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public PooledRefQueue<Item> QueueItems(bool recurse = true, Predicate<Item> predicate = null) =>
         QueueItemsByType(recurse, predicate);
 
-    public PooledRefQueue<T> QueueItemsByType<T>(bool recurse = true, Predicate<T> predicate = null) where T : Item
+    public PooledRefQueue<T> QueueItemsByType<T>(bool recurse = true, Predicate<T> predicate = null)
     {
         var queue = PooledRefQueue<T>.Create();
         foreach (var item in FindItemsByType(recurse, predicate))
@@ -120,7 +120,7 @@ public partial class Container
     public PooledRefList<Item> ListItems(bool recurse = true, Predicate<Item> predicate = null) =>
         ListItemsByType(recurse, predicate);
 
-    public PooledRefList<T> ListItemsByType<T>(bool recurse = true, Predicate<T> predicate = null) where T : Item
+    public PooledRefList<T> ListItemsByType<T>(bool recurse = true, Predicate<T> predicate = null)
     {
         var list = PooledRefList<T>.Create();
         foreach (var item in FindItemsByType(recurse, predicate))
@@ -131,7 +131,7 @@ public partial class Container
         return list;
     }
 
-    public ref struct FindItemsByTypeEnumerator<T> where T : Item
+    public ref struct FindItemsByTypeEnumerator<T>
     {
         private PooledRefQueue<Container> _containers;
         private Span<Item> _items;
@@ -205,7 +205,7 @@ public partial class Container
         public FindItemsByTypeEnumerator<T> GetEnumerator() => this;
     }
 
-    public ref struct QueuedItemsEnumerator<T> where T : Item
+    public ref struct QueuedItemsEnumerator<T>
     {
         private PooledRefQueue<T> _queue;
         private T _current;
