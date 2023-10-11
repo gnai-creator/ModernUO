@@ -161,7 +161,7 @@ public static class Core
         {
             // See notes above for _now and why this is a volatile variable.
             var now = _now;
-            return now == DateTime.MinValue ? DateTime.UtcNow : now;
+            return now == DateTime.MinValue ? Core.Now : now;
         }
     }
 
@@ -543,7 +543,7 @@ public static class Core
             while (!Closing)
             {
                 _tickCount = TickCount;
-                _now = DateTime.UtcNow;
+                _now = Core.Now;
 
                 Mobile.ProcessDeltaQueue();
                 Item.ProcessDeltaQueue();
