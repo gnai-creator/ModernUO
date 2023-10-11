@@ -61,7 +61,7 @@ namespace Server.Mobiles
                     return;
                 }
 
-                List<SearchEntry> results = XmlFindGump.Search(m_SearchCriteria, out string status_str);
+                List<SearchEntry> results = Search(m_SearchCriteria, out string status_str);
                 for (int i = results.Count - 1; i >= 0; --i)
                 {
                     var se = results[i];

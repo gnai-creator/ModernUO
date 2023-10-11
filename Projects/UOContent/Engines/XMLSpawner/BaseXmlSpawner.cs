@@ -21,7 +21,7 @@ namespace Server.Mobiles
     {
         #region Initialization
 
-        private static BaseXmlSpawner.ProtectedProperty[] ProtectedPropertiesList = new ProtectedProperty[] { new ProtectedProperty(typeof(Mobile), "accesslevel") };
+        private static ProtectedProperty[] ProtectedPropertiesList = new ProtectedProperty[] { new ProtectedProperty(typeof(Mobile), "accesslevel") };
 
         private class ProtectedProperty
         {
@@ -104,7 +104,7 @@ namespace Server.Mobiles
             typeof( byte ), typeof( sbyte ),
             typeof( short ), typeof( ushort ),
             typeof( int ), typeof( uint ),
-            typeof( long ), typeof( ulong ), typeof( Server.Serial )
+            typeof( long ), typeof( ulong ), typeof( Serial )
         };
 
         public static bool IsNumeric(Type t)
@@ -368,15 +368,15 @@ namespace Server.Mobiles
         // if this is null, then COMMANDS can only be issued when triggered by players of the appropriate accesslevel
         private static string CommandMobileName = null;
 
-        private static Dictionary<string, BaseXmlSpawner.TypeKeyword> typeKeywordHash { get; } = new Dictionary<string, BaseXmlSpawner.TypeKeyword>();
+        private static Dictionary<string, TypeKeyword> typeKeywordHash { get; } = new Dictionary<string, TypeKeyword>();
 
-        private static Dictionary<string, BaseXmlSpawner.TypemodKeyword> typemodKeywordHash { get; } = new Dictionary<string, BaseXmlSpawner.TypemodKeyword>();
+        private static Dictionary<string, TypemodKeyword> typemodKeywordHash { get; } = new Dictionary<string, TypemodKeyword>();
 
-        private static Dictionary<string, BaseXmlSpawner.ValueKeyword> valueKeywordHash { get; } = new Dictionary<string, BaseXmlSpawner.ValueKeyword>();
+        private static Dictionary<string, ValueKeyword> valueKeywordHash { get; } = new Dictionary<string, ValueKeyword>();
 
-        private static Dictionary<string, BaseXmlSpawner.ValuemodKeyword> valuemodKeywordHash { get; } = new Dictionary<string, BaseXmlSpawner.ValuemodKeyword>();
+        private static Dictionary<string, ValuemodKeyword> valuemodKeywordHash { get; } = new Dictionary<string, ValuemodKeyword>();
 
-        private static Dictionary<string, BaseXmlSpawner.ItemKeyword> itemKeywordHash { get; } = new Dictionary<string, BaseXmlSpawner.ItemKeyword>();
+        private static Dictionary<string, ItemKeyword> itemKeywordHash { get; } = new Dictionary<string, ItemKeyword>();
 
         internal static char[] SlashDelim { get; } = new char[1] { '/' };
         internal static char[] CommaDelim { get; } = new char[1] { ',' };
@@ -668,7 +668,7 @@ namespace Server.Mobiles
                     m_TrigMob = spawner.TriggerMob;
                     if (spawner.m_KeywordTagList == null)
                     {
-                        spawner.m_KeywordTagList = new List<BaseXmlSpawner.KeywordTag>();
+                        spawner.m_KeywordTagList = new List<KeywordTag>();
                     }
                     // calculate the serial index of the new tag by adding one to the last one if there is one, otherwise just reset to 0
                     if (spawner.m_KeywordTagList.Count > 0)
@@ -1412,7 +1412,7 @@ namespace Server.Mobiles
                         return "Property is protected.";
                     }
 
-                    if (plookup.PropertyType == typeof(Server.Mobile))
+                    if (plookup.PropertyType == typeof(Mobile))
                     {
                         plookup.SetValue(o, value, null);
 
@@ -9141,7 +9141,7 @@ namespace Server.Mobiles
 
             // apply the parsed arguments from the typestring using setcommand
             // be sure to do this after setting map and location so that errors dont place the mob on the internal map
-            BaseXmlSpawner.ApplyObjectStringProperties(spawner, propertyString, item, trigmob, spawner, out status_str);
+            ApplyObjectStringProperties(spawner, propertyString, item, trigmob, spawner, out status_str);
 
             // if the object has an OnAfterSpawnAndModify method, then invoke it
             //InvokeOnAfterSpawnAndModify(item);
@@ -11566,7 +11566,7 @@ namespace Server.Mobiles
 
                                 Type spelltype = spell.GetType();
                                 // deal with any special cases here
-                                if (spelltype == typeof(Server.Spells.Seventh.PolymorphSpell))
+                                if (spelltype == typeof(Spells.Seventh.PolymorphSpell))
                                 {
                                     if (keywordarg2 == 0)
                                     {
@@ -11606,13 +11606,13 @@ namespace Server.Mobiles
                                 // check the parameters
                                 if (spelltargetparms != null && spelltargetparms.Length > 0)
                                 {
-                                    if (spelltargetparms[0].ParameterType == typeof(Server.Mobile))
+                                    if (spelltargetparms[0].ParameterType == typeof(Mobile))
                                     {
                                         // set the target parameter
                                         targetargs = new object[1];
                                         targetargs[0] = triggermob;
                                     }
-                                    else if (spelltargetparms[0].ParameterType == typeof(Server.IPoint3D))
+                                    else if (spelltargetparms[0].ParameterType == typeof(IPoint3D))
                                     {
                                         // set the target parameter
                                         targetargs = new object[1];

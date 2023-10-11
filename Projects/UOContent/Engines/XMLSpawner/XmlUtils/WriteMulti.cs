@@ -108,7 +108,7 @@ namespace Server.Engines.XmlSpawner2
             }
 
             string dirname;
-            if (System.IO.Directory.Exists(XmlSpawner.XmlMultiDir) && filename != null && !filename.StartsWith("/") && !filename.StartsWith("\\"))
+            if (Directory.Exists(XmlSpawner.XmlMultiDir) && filename != null && !filename.StartsWith("/") && !filename.StartsWith("\\"))
             {
                 // put it in the defaults directory if it exists
                 dirname = string.Format("{0}/{1}", XmlSpawner.XmlMultiDir, filename);
@@ -120,7 +120,7 @@ namespace Server.Engines.XmlSpawner2
             }
 
             // check to see if the file already exists and can be written to by the owner
-            if (System.IO.File.Exists(dirname))
+            if (File.Exists(dirname))
             {
 
                 // check the file

@@ -90,15 +90,15 @@ namespace Server.Mobiles
             public SkillName sid;
 
             // note the extra skill MaxSkills +1 is used for any unknown skill that falls outside of the known 52
-            private static List<XmlSpawnerSkillCheck.RegisteredSkill>[] m_FeluccaSkillList = new List<XmlSpawnerSkillCheck.RegisteredSkill>[MaxSkills + 1];
-            private static List<XmlSpawnerSkillCheck.RegisteredSkill>[] m_TrammelSkillList = new List<XmlSpawnerSkillCheck.RegisteredSkill>[MaxSkills + 1];
-            private static List<XmlSpawnerSkillCheck.RegisteredSkill>[] m_DungeonSemiChiusiSkillList = new List<XmlSpawnerSkillCheck.RegisteredSkill>[MaxSkills + 1];
-            private static List<XmlSpawnerSkillCheck.RegisteredSkill>[] m_IlshenarSkillList = new List<XmlSpawnerSkillCheck.RegisteredSkill>[MaxSkills + 1];
-            private static List<XmlSpawnerSkillCheck.RegisteredSkill>[] m_DungeonChiusiSkillList = new List<XmlSpawnerSkillCheck.RegisteredSkill>[MaxSkills + 1];
-            private static List<XmlSpawnerSkillCheck.RegisteredSkill>[] m_EventiSkillList = new List<XmlSpawnerSkillCheck.RegisteredSkill>[MaxSkills + 1];
+            private static List<RegisteredSkill>[] m_FeluccaSkillList = new List<RegisteredSkill>[MaxSkills + 1];
+            private static List<RegisteredSkill>[] m_TrammelSkillList = new List<RegisteredSkill>[MaxSkills + 1];
+            private static List<RegisteredSkill>[] m_DungeonSemiChiusiSkillList = new List<RegisteredSkill>[MaxSkills + 1];
+            private static List<RegisteredSkill>[] m_IlshenarSkillList = new List<RegisteredSkill>[MaxSkills + 1];
+            private static List<RegisteredSkill>[] m_DungeonChiusiSkillList = new List<RegisteredSkill>[MaxSkills + 1];
+            private static List<RegisteredSkill>[] m_EventiSkillList = new List<RegisteredSkill>[MaxSkills + 1];
 
             // primary function that returns the list of objects (spawners) that are associated with a given skillname by map
-            public static List<XmlSpawnerSkillCheck.RegisteredSkill> TriggerList(SkillName index, Map map)
+            public static List<RegisteredSkill> TriggerList(SkillName index, Map map)
             {
                 if (map == null || map == Map.Internal)
                 {
@@ -157,7 +157,7 @@ if(map == Map.TerMur)
                 {
                     if (maplist[(int)index] == null)
                     {
-                        maplist[(int)index] = new List<XmlSpawnerSkillCheck.RegisteredSkill>();
+                        maplist[(int)index] = new List<RegisteredSkill>();
                     }
 
                     return maplist[(int)index];
@@ -168,7 +168,7 @@ if(map == Map.TerMur)
                 {
                     if (maplist[MaxSkills] == null)
                     {
-                        maplist[MaxSkills] = new List<XmlSpawnerSkillCheck.RegisteredSkill>();
+                        maplist[MaxSkills] = new List<RegisteredSkill>();
                     }
 
                     return maplist[MaxSkills];
@@ -186,7 +186,7 @@ if(map == Map.TerMur)
             // go through the list and if the spawner is not on it yet, then add it
             bool found = false;
 
-            List<XmlSpawnerSkillCheck.RegisteredSkill> skilllist = RegisteredSkill.TriggerList(s, map);
+            List<RegisteredSkill> skilllist = RegisteredSkill.TriggerList(s, map);
 
             if (skilllist == null)
             {
@@ -229,7 +229,7 @@ if(map == Map.TerMur)
             {
                 for (int i = 0; i < RegisteredSkill.MaxSkills + 1; ++i)
                 {
-                    List<XmlSpawnerSkillCheck.RegisteredSkill> skilllist = RegisteredSkill.TriggerList((SkillName)i, map);
+                    List<RegisteredSkill> skilllist = RegisteredSkill.TriggerList((SkillName)i, map);
 
                     if (skilllist == null)
                     {
@@ -249,7 +249,7 @@ if(map == Map.TerMur)
             }
             else
             {
-                List<XmlSpawnerSkillCheck.RegisteredSkill> skilllist = RegisteredSkill.TriggerList(s, map);
+                List<RegisteredSkill> skilllist = RegisteredSkill.TriggerList(s, map);
 
                 if (skilllist == null)
                 {
@@ -290,7 +290,7 @@ if(map == Map.TerMur)
             }
 
             // then check for registered skills
-            List<XmlSpawnerSkillCheck.RegisteredSkill> skilllist = RegisteredSkill.TriggerList(skill.SkillName, m.Map);
+            List<RegisteredSkill> skilllist = RegisteredSkill.TriggerList(skill.SkillName, m.Map);
 
             if (skilllist == null)
             {

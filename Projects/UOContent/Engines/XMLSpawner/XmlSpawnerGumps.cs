@@ -375,20 +375,20 @@ namespace Server.Mobiles
             switch (info.ButtonID)
             {
                 case 0: // Close
-                {
-                    update_entry = false;
-                    break;
-                }
+                    {
+                        update_entry = false;
+                        break;
+                    }
                 case 1: // Okay
-                {
-                    update_entry = true;
-                    break;
-                }
+                    {
+                        update_entry = true;
+                        break;
+                    }
                 case 2: // Edit
-                {
-                    edit_entry = true;
-                    break;
-                }
+                    {
+                        edit_entry = true;
+                        break;
+                    }
                 default:
                     update_entry = true;
                     break;
@@ -411,8 +411,6 @@ namespace Server.Mobiles
                         int firstindex = origtext.IndexOf(oldtext);
                         if (firstindex >= 0)
                         {
-
-
                             int secondindex = firstindex + oldtext.Length;
 
                             int lastindex = origtext.Length - 1;
@@ -857,7 +855,7 @@ namespace Server.Mobiles
                             }
                             else
                             {
-                                // estimate the earliest the next spawn could occur as the first spawn tick after reaching the subgroup nextspawn 
+                                // estimate the earliest the next spawn could occur as the first spawn tick after reaching the subgroup nextspawn
                                 strnext = (m_Spawner.SpawnObjects[i].NextSpawn - DateTime.UtcNow + m_Spawner.NextSpawn).ToString();
                             }
                         }
@@ -1057,7 +1055,7 @@ namespace Server.Mobiles
                 m_Spawner.MaxCount++;
             }
 
-            // refresh the spawner gumps			
+            // refresh the spawner gumps
             RefreshSpawnerGumps(from);
 
             // and refresh the current one
@@ -1386,7 +1384,7 @@ namespace Server.Mobiles
                                 grpval = 1;
                             }
 
-                            // if this value has changed, then update 
+                            // if this value has changed, then update
                             if (grpval != m_Spawner.SpawnObjects[i].PackRange)
                             {
                                 m_Spawner.SpawnObjects[i].PackRange = grpval;
@@ -1699,19 +1697,19 @@ namespace Server.Mobiles
                             state.Mobile.SendGump(newg);
 
                             // if no string has been entered then just use the full categorized add gump
-                            state.Mobile.CloseGump(typeof(Server.Gumps.XmlCategorizedAddGump));
-                            state.Mobile.SendGump(new Server.Gumps.XmlCategorizedAddGump(state.Mobile, i, newg));
+                            state.Mobile.CloseGump(typeof(XmlCategorizedAddGump));
+                            state.Mobile.SendGump(new XmlCategorizedAddGump(state.Mobile, i, newg));
                         }
                         else
                         {
                             // use the XmlPartialCategorizedAddGump
-                            state.Mobile.CloseGump(typeof(Server.Gumps.XmlPartialCategorizedAddGump));
+                            state.Mobile.CloseGump(typeof(XmlPartialCategorizedAddGump));
 
                             //Type [] types = (Type[])XmlPartialCategorizedAddGump.Match( categorystring ).ToArray( typeof( Type ) );
                             List<XmlPartialCategorizedAddGump.SearchEntry> types = XmlPartialCategorizedAddGump.Match(categorystring);
 
 
-                            XmlSpawnerGump.ReplacementEntry re = new XmlSpawnerGump.ReplacementEntry
+                            ReplacementEntry re = new ReplacementEntry
                             {
                                 Typename = entrystring,
                                 Index = i,
